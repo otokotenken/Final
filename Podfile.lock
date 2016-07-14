@@ -1,0 +1,12 @@
+PODS:
+  - ARNRouletteWheelView (0.1.0)
+
+DEPENDENCIES:
+  - ARNRouletteWheelView
+
+SPEC CHECKSUMS:
+  ARNRouletteWheelView: 58cbcd85e224cc5d2a68ba64736b51dea7043a56
+
+PODFILE CHECKSUM: 6842e982bdd1610fae125aa61bd7760d7815397e
+
+COCOAPODS: 1.0.0
