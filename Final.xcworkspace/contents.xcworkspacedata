@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:WheelCollectionViewCell.h">
+   </FileRef>
+   <FileRef
+      location = "group:WheelCollectionViewCell.m">
+   </FileRef>
+   <FileRef
       location = "group:Final.xcodeproj">
    </FileRef>
    <FileRef
