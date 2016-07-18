@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		433624A81D380E3000AD0ABC /* WheelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433624A71D380E3000AD0ABC /* WheelViewController.m */; };
+		433624AE1D3818EE00AD0ABC /* WheelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 433624AD1D3818EE00AD0ABC /* WheelCollectionViewCell.m */; };
+		433624B11D381E7B00AD0ABC /* WheelCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 433624B01D381E7B00AD0ABC /* WheelCollectionViewLayout.m */; };
+		43A80FB01D3D1D860056765B /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A80FAF1D3D1D860056765B /* ChatViewController.m */; };
 		43CEEBB71D36F80700C2485F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CEEBB61D36F80700C2485F /* main.m */; };
 		43CEEBBA1D36F80700C2485F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CEEBB91D36F80700C2485F /* AppDelegate.m */; };
 		43CEEBC01D36F80700C2485F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43CEEBBE1D36F80700C2485F /* Main.storyboard */; };
@@ -17,6 +21,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		433624A61D380E3000AD0ABC /* WheelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WheelViewController.h; sourceTree = "<group>"; };
+		433624A71D380E3000AD0ABC /* WheelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WheelViewController.m; sourceTree = "<group>"; };
+		433624AC1D3818EE00AD0ABC /* WheelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WheelCollectionViewCell.h; path = ../WheelCollectionViewCell.h; sourceTree = "<group>"; };
+		433624AD1D3818EE00AD0ABC /* WheelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WheelCollectionViewCell.m; path = ../WheelCollectionViewCell.m; sourceTree = "<group>"; };
+		433624AF1D381E7B00AD0ABC /* WheelCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WheelCollectionViewLayout.h; sourceTree = "<group>"; };
+		433624B01D381E7B00AD0ABC /* WheelCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WheelCollectionViewLayout.m; sourceTree = "<group>"; };
+		43A80FAE1D3D1D860056765B /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		43A80FAF1D3D1D860056765B /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		43CEEBB21D36F80700C2485F /* Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CEEBB61D36F80700C2485F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43CEEBB81D36F80700C2485F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -65,6 +77,14 @@
 		43CEEBB41D36F80700C2485F /* Final */ = {
 			isa = PBXGroup;
 			children = (
+				43A80FAE1D3D1D860056765B /* ChatViewController.h */,
+				43A80FAF1D3D1D860056765B /* ChatViewController.m */,
+				433624AC1D3818EE00AD0ABC /* WheelCollectionViewCell.h */,
+				433624AD1D3818EE00AD0ABC /* WheelCollectionViewCell.m */,
+				433624AF1D381E7B00AD0ABC /* WheelCollectionViewLayout.h */,
+				433624B01D381E7B00AD0ABC /* WheelCollectionViewLayout.m */,
+				433624A61D380E3000AD0ABC /* WheelViewController.h */,
+				433624A71D380E3000AD0ABC /* WheelViewController.m */,
 				43CEEBB81D36F80700C2485F /* AppDelegate.h */,
 				43CEEBB91D36F80700C2485F /* AppDelegate.m */,
 				43CEEBBE1D36F80700C2485F /* Main.storyboard */,
@@ -224,8 +244,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				433624A81D380E3000AD0ABC /* WheelViewController.m in Sources */,
+				433624AE1D3818EE00AD0ABC /* WheelCollectionViewCell.m in Sources */,
 				43CEEBCE1D36F8E400C2485F /* MenuCollectionViewController.m in Sources */,
 				43CEEBBA1D36F80700C2485F /* AppDelegate.m in Sources */,
+				433624B11D381E7B00AD0ABC /* WheelCollectionViewLayout.m in Sources */,
+				43A80FB01D3D1D860056765B /* ChatViewController.m in Sources */,
 				43CEEBB71D36F80700C2485F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
