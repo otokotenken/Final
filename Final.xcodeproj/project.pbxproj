@@ -14,6 +14,10 @@
 		43A80FB61D3D42330056765B /* ToDoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A80FB51D3D42330056765B /* ToDoListViewController.m */; };
 		43A80FB91D3D48730056765B /* TaskListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A80FB81D3D48730056765B /* TaskListItem.m */; };
 		43A80FBC1D3E71F20056765B /* TaskListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A80FBB1D3E71F20056765B /* TaskListTableViewCell.m */; };
+		43A80FC11D3ECBBA0056765B /* TaskListStrikethroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A80FC01D3ECBBA0056765B /* TaskListStrikethroughLabel.m */; };
+		43A80FC31D3EDA060056765B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A80FC21D3EDA060056765B /* QuartzCore.framework */; };
+		43A80FC61D3FB6650056765B /* TaskListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A80FC51D3FB6650056765B /* TaskListTableView.m */; };
+		43A80FCB1D40547E0056765B /* TaskListTableViewDragAddNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A80FCA1D40547D0056765B /* TaskListTableViewDragAddNew.m */; };
 		43CEEBB71D36F80700C2485F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CEEBB61D36F80700C2485F /* main.m */; };
 		43CEEBBA1D36F80700C2485F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CEEBB91D36F80700C2485F /* AppDelegate.m */; };
 		43CEEBC01D36F80700C2485F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43CEEBBE1D36F80700C2485F /* Main.storyboard */; };
@@ -38,6 +42,15 @@
 		43A80FB81D3D48730056765B /* TaskListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListItem.m; sourceTree = "<group>"; };
 		43A80FBA1D3E71F20056765B /* TaskListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListTableViewCell.h; sourceTree = "<group>"; };
 		43A80FBB1D3E71F20056765B /* TaskListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListTableViewCell.m; sourceTree = "<group>"; };
+		43A80FBE1D3EC4AD0056765B /* TaskListCellDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TaskListCellDelegate.h; path = ../TaskListCellDelegate.h; sourceTree = "<group>"; };
+		43A80FBF1D3ECBBA0056765B /* TaskListStrikethroughLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListStrikethroughLabel.h; sourceTree = "<group>"; };
+		43A80FC01D3ECBBA0056765B /* TaskListStrikethroughLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListStrikethroughLabel.m; sourceTree = "<group>"; };
+		43A80FC21D3EDA060056765B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		43A80FC41D3FB6650056765B /* TaskListTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListTableView.h; sourceTree = "<group>"; };
+		43A80FC51D3FB6650056765B /* TaskListTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListTableView.m; sourceTree = "<group>"; };
+		43A80FC81D3FC3DB0056765B /* TaskListTableViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskListTableViewDataSource.h; sourceTree = "<group>"; };
+		43A80FC91D40547D0056765B /* TaskListTableViewDragAddNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListTableViewDragAddNew.h; sourceTree = "<group>"; };
+		43A80FCA1D40547D0056765B /* TaskListTableViewDragAddNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListTableViewDragAddNew.m; sourceTree = "<group>"; };
 		43CEEBB21D36F80700C2485F /* Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CEEBB61D36F80700C2485F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43CEEBB81D36F80700C2485F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -58,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43A80FC31D3EDA060056765B /* QuartzCore.framework in Frameworks */,
 				F33988A0D075FD77278316A7 /* libPods-Final.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +100,9 @@
 		43CEEBB41D36F80700C2485F /* Final */ = {
 			isa = PBXGroup;
 			children = (
+				43A80FC81D3FC3DB0056765B /* TaskListTableViewDataSource.h */,
+				43A80FBF1D3ECBBA0056765B /* TaskListStrikethroughLabel.h */,
+				43A80FC01D3ECBBA0056765B /* TaskListStrikethroughLabel.m */,
 				43A80FAE1D3D1D860056765B /* ChatViewController.h */,
 				43A80FAF1D3D1D860056765B /* ChatViewController.m */,
 				433624AC1D3818EE00AD0ABC /* WheelCollectionViewCell.h */,
@@ -97,12 +114,17 @@
 				43CEEBB81D36F80700C2485F /* AppDelegate.h */,
 				43CEEBB91D36F80700C2485F /* AppDelegate.m */,
 				43CEEBBE1D36F80700C2485F /* Main.storyboard */,
+				43A80FC91D40547D0056765B /* TaskListTableViewDragAddNew.h */,
+				43A80FCA1D40547D0056765B /* TaskListTableViewDragAddNew.m */,
 				43A80FB71D3D48730056765B /* TaskListItem.h */,
 				43A80FB81D3D48730056765B /* TaskListItem.m */,
 				43A80FB41D3D42330056765B /* ToDoListViewController.h */,
 				43A80FB51D3D42330056765B /* ToDoListViewController.m */,
 				43A80FBA1D3E71F20056765B /* TaskListTableViewCell.h */,
 				43A80FBB1D3E71F20056765B /* TaskListTableViewCell.m */,
+				43A80FC41D3FB6650056765B /* TaskListTableView.h */,
+				43A80FC51D3FB6650056765B /* TaskListTableView.m */,
+				43A80FBE1D3EC4AD0056765B /* TaskListCellDelegate.h */,
 				43CEEBCC1D36F8E400C2485F /* MenuCollectionViewController.h */,
 				43CEEBCD1D36F8E400C2485F /* MenuCollectionViewController.m */,
 				43CEEBC11D36F80700C2485F /* Assets.xcassets */,
@@ -133,6 +155,7 @@
 		A960DDB96328CAD052B5CE08 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43A80FC21D3EDA060056765B /* QuartzCore.framework */,
 				F87FAFECC127CAB5C27FEAFA /* libPods-Final.a */,
 			);
 			name = Frameworks;
@@ -261,7 +284,10 @@
 			files = (
 				433624A81D380E3000AD0ABC /* WheelViewController.m in Sources */,
 				433624AE1D3818EE00AD0ABC /* WheelCollectionViewCell.m in Sources */,
+				43A80FCB1D40547E0056765B /* TaskListTableViewDragAddNew.m in Sources */,
+				43A80FC11D3ECBBA0056765B /* TaskListStrikethroughLabel.m in Sources */,
 				43CEEBCE1D36F8E400C2485F /* MenuCollectionViewController.m in Sources */,
+				43A80FC61D3FB6650056765B /* TaskListTableView.m in Sources */,
 				43CEEBBA1D36F80700C2485F /* AppDelegate.m in Sources */,
 				43A80FB61D3D42330056765B /* ToDoListViewController.m in Sources */,
 				433624B11D381E7B00AD0ABC /* WheelCollectionViewLayout.m in Sources */,
