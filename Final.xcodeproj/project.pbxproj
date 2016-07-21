@@ -11,6 +11,9 @@
 		433624AE1D3818EE00AD0ABC /* WheelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 433624AD1D3818EE00AD0ABC /* WheelCollectionViewCell.m */; };
 		433624B11D381E7B00AD0ABC /* WheelCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 433624B01D381E7B00AD0ABC /* WheelCollectionViewLayout.m */; };
 		43A80FB01D3D1D860056765B /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A80FAF1D3D1D860056765B /* ChatViewController.m */; };
+		43A80FB61D3D42330056765B /* ToDoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A80FB51D3D42330056765B /* ToDoListViewController.m */; };
+		43A80FB91D3D48730056765B /* TaskListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A80FB81D3D48730056765B /* TaskListItem.m */; };
+		43A80FBC1D3E71F20056765B /* TaskListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A80FBB1D3E71F20056765B /* TaskListTableViewCell.m */; };
 		43CEEBB71D36F80700C2485F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CEEBB61D36F80700C2485F /* main.m */; };
 		43CEEBBA1D36F80700C2485F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CEEBB91D36F80700C2485F /* AppDelegate.m */; };
 		43CEEBC01D36F80700C2485F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43CEEBBE1D36F80700C2485F /* Main.storyboard */; };
@@ -29,6 +32,12 @@
 		433624B01D381E7B00AD0ABC /* WheelCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WheelCollectionViewLayout.m; sourceTree = "<group>"; };
 		43A80FAE1D3D1D860056765B /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		43A80FAF1D3D1D860056765B /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		43A80FB41D3D42330056765B /* ToDoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoListViewController.h; sourceTree = "<group>"; };
+		43A80FB51D3D42330056765B /* ToDoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoListViewController.m; sourceTree = "<group>"; };
+		43A80FB71D3D48730056765B /* TaskListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListItem.h; sourceTree = "<group>"; };
+		43A80FB81D3D48730056765B /* TaskListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListItem.m; sourceTree = "<group>"; };
+		43A80FBA1D3E71F20056765B /* TaskListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListTableViewCell.h; sourceTree = "<group>"; };
+		43A80FBB1D3E71F20056765B /* TaskListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListTableViewCell.m; sourceTree = "<group>"; };
 		43CEEBB21D36F80700C2485F /* Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CEEBB61D36F80700C2485F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43CEEBB81D36F80700C2485F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -88,6 +97,12 @@
 				43CEEBB81D36F80700C2485F /* AppDelegate.h */,
 				43CEEBB91D36F80700C2485F /* AppDelegate.m */,
 				43CEEBBE1D36F80700C2485F /* Main.storyboard */,
+				43A80FB71D3D48730056765B /* TaskListItem.h */,
+				43A80FB81D3D48730056765B /* TaskListItem.m */,
+				43A80FB41D3D42330056765B /* ToDoListViewController.h */,
+				43A80FB51D3D42330056765B /* ToDoListViewController.m */,
+				43A80FBA1D3E71F20056765B /* TaskListTableViewCell.h */,
+				43A80FBB1D3E71F20056765B /* TaskListTableViewCell.m */,
 				43CEEBCC1D36F8E400C2485F /* MenuCollectionViewController.h */,
 				43CEEBCD1D36F8E400C2485F /* MenuCollectionViewController.m */,
 				43CEEBC11D36F80700C2485F /* Assets.xcassets */,
@@ -248,7 +263,10 @@
 				433624AE1D3818EE00AD0ABC /* WheelCollectionViewCell.m in Sources */,
 				43CEEBCE1D36F8E400C2485F /* MenuCollectionViewController.m in Sources */,
 				43CEEBBA1D36F80700C2485F /* AppDelegate.m in Sources */,
+				43A80FB61D3D42330056765B /* ToDoListViewController.m in Sources */,
 				433624B11D381E7B00AD0ABC /* WheelCollectionViewLayout.m in Sources */,
+				43A80FBC1D3E71F20056765B /* TaskListTableViewCell.m in Sources */,
+				43A80FB91D3D48730056765B /* TaskListItem.m in Sources */,
 				43A80FB01D3D1D860056765B /* ChatViewController.m in Sources */,
 				43CEEBB71D36F80700C2485F /* main.m in Sources */,
 			);
