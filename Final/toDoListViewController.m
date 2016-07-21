@@ -9,6 +9,7 @@
 #import "ToDoListViewController.h"
 #import "TaskListItem.h"
 #import "TaskListTableViewCell.h"
+//#import "TaskListTableView.h"
 
 @interface ToDoListViewController ()
 
@@ -17,18 +18,26 @@
 @implementation ToDoListViewController {
     
     NSMutableArray *_toDoItems;
+    // the offset applied to cells when entering “edit mode”
+    float _editingOffset;
+    TaskListTableViewDragAddNew* _dragAddNew;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _tableView.dataSource = self;
-    self.tableView.delegate = self;
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor blackColor];
-    [self.tableView registerClass:[TaskListTableViewCell class] forCellReuseIdentifier:@"cell"];
+//    _tableView.dataSource = self;
+//    self.tableView.delegate = self;
+//    
+////    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+////    self.tableView.backgroundColor = [UIColor blackColor];
+//    [self.tableView registerClass:[TaskListTableViewCell class] forCellReuseIdentifier:@"cell"];
     [self makeTaskList];
     _tableView.backgroundColor = [UIColor clearColor];
+    [self.tableView registerClassForCells:[TaskListTableViewCell class]];
+    _dragAddNew = [[TaskListTableViewDragAddNew alloc] initWithTableView:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,32 +65,83 @@
     return self;
 }
 
-#pragma mark - UITableViewDataSource protocol methods
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+#pragma mark - TaskListTableViewDataSource methods
+-(NSInteger)numberOfRows {
+    return _toDoItems.count;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_toDoItems count];
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ident = @"cell";
-    // re-use or create a cell
-    TaskListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ident forIndexPath:indexPath];
-    cell.textLabel.backgroundColor = [UIColor clearColor];
-//    [cell.textLabel setFont:[UIFont systemFontOfSize:26.0]];
-    [cell.textLabel setFont:[UIFont fontWithName:@"Noteworthy-Bold" size:19.0]];
-    // find the to-do item for this index
-    NSInteger index = [indexPath row];
-    TaskListItem *item = _toDoItems[index];
-    // set the text
-    NSString *taskText = item.textTask;
-    //grab the nsstring text for the cell
-    cell.textLabel.text = taskText;
+-(UITableViewCell *)cellForRow:(NSInteger)row {
+    TaskListTableViewCell* cell = (TaskListTableViewCell*)[self.tableView dequeueReusableCell];
+    TaskListItem *item = _toDoItems[row];
+    cell.todoItem = item;
+    cell.delegate = self;
+    cell.backgroundColor = [self colorForIndex:row];
     return cell;
 }
+-(void)toDoItemDeleted:(id)todoItem {
+    float delay = 0.0;
+    
+    // remove the model object
+    [_toDoItems removeObject:todoItem];
+    
+    // find the visible cells
+    NSArray* visibleCells = [self.tableView visibleCells];
+    
+    UIView* lastView = [visibleCells lastObject];
+    bool startAnimating = false;
+    
+    // iterate over all of the cells
+    for(TaskListTableViewCell* cell in visibleCells) {
+        if (startAnimating) {
+            [UIView animateWithDuration:0.5
+                                  delay:delay
+                                options:UIViewAnimationOptionCurveEaseInOut
+                             animations:^{
+                                 cell.frame = CGRectOffset(cell.frame, 0.0f, -cell.frame.size.height);
+                             }
+                             completion:^(BOOL finished){
+                                 if (cell == lastView) {
+                                     [self.tableView reloadData];
+                                 }
+                             }];
+            delay+=0.03;
+        }
+        
+        // if you have reached the item that was deleted, start animating
+        if (cell.todoItem == todoItem) {
+            startAnimating = true;
+            cell.hidden = YES;
+        }
+    }
+}
+
+
+-(void)cellDidBeginEditing:(TaskListTableViewCell *)editingCell {
+//    _editingOffset = _tableView.contentOffset.y - editingCell.frame.origin.y;
+    for(TaskListTableViewCell* cell in [_tableView visibleCells]) {
+        [UIView animateWithDuration:0.3
+                         animations:^{
+                             cell.frame = CGRectOffset(cell.frame, 0, _editingOffset);
+                             if (cell != editingCell) {
+                                 cell.alpha = 0.3;
+                             }
+                         }];
+    }
+}
+
+-(void)cellDidEndEditing:(TaskListTableViewCell *)editingCell {
+    for(TaskListTableViewCell* cell in [_tableView visibleCells]) {
+        [UIView animateWithDuration:0.3
+                         animations:^{
+                             cell.frame = CGRectOffset(cell.frame, 0, -_editingOffset);
+                             if (cell != editingCell)
+                             {
+                                 cell.alpha = 1.0;
+                             }
+                         }];
+    }
+}
+
 
 -(UIColor*)colorForIndex:(NSInteger) index {
     NSUInteger itemCount = _toDoItems.count - 1;
@@ -97,6 +157,24 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.backgroundColor = [self colorForIndex:indexPath.row];
 }
+
+-(void)itemAdded {
+    // create the new item
+    TaskListItem* toDoItem = [[TaskListItem alloc] init];
+    [_toDoItems insertObject:toDoItem atIndex:0];
+    // refresh the table
+    [_tableView reloadData];
+    // enter edit mode
+    TaskListTableViewCell* editCell;
+    for (TaskListTableViewCell* cell in _tableView.visibleCells) {
+        if (cell.todoItem == toDoItem) {
+            editCell = cell;
+            break;
+        }
+    }
+    [editCell.label becomeFirstResponder];
+}
+
 /*
 #pragma mark - Navigation
 

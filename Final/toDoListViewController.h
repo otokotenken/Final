@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskListTableViewDragAddNew.h"
+#import "TaskListCellDelegate.h"
+#import "TaskListTableViewDataSource.h"
 
-@interface ToDoListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ToDoListViewController : UIViewController <TaskListCellDelegate, TaskListTableViewDataSource>
 
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) IBOutlet TaskListTableView *tableView;
 
 @end

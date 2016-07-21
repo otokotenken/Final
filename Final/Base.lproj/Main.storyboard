@@ -312,7 +312,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGi-xv-l9p">
                                 <rect key="frame" x="107" y="268" width="107" height="32"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="25"/>
+                                <fontDescription key="fontDescription" name="CourierNewPS-ItalicMT" family="Courier New" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -337,22 +337,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="5" sectionFooterHeight="5" translatesAutoresizingMaskIntoConstraints="NO" id="WUE-ka-69R">
-                                <rect key="frame" x="0.0" y="145" width="320" height="224"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqG-4i-tIg" customClass="TaskListTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vbw-xf-Mkk" firstAttribute="top" secondItem="WUE-ka-69R" secondAttribute="bottom" constant="199" id="BSe-33-9Ru"/>
-                            <constraint firstItem="WUE-ka-69R" firstAttribute="top" secondItem="ylm-9T-ANg" secondAttribute="bottom" constant="81" id="Br6-pP-NLk"/>
-                            <constraint firstAttribute="trailing" secondItem="WUE-ka-69R" secondAttribute="trailing" id="jR9-Zr-XQc"/>
-                            <constraint firstItem="WUE-ka-69R" firstAttribute="leading" secondItem="jLx-rd-XTb" secondAttribute="leading" id="wDO-Uo-b6y"/>
+                            <constraint firstItem="dqG-4i-tIg" firstAttribute="top" secondItem="ylm-9T-ANg" secondAttribute="bottom" constant="-64" id="Aor-gM-lvK"/>
+                            <constraint firstItem="dqG-4i-tIg" firstAttribute="leading" secondItem="jLx-rd-XTb" secondAttribute="leadingMargin" constant="-20" id="Px9-g4-kzA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dqG-4i-tIg" secondAttribute="trailing" constant="-20" id="anV-hq-e2L"/>
+                            <constraint firstItem="vbw-xf-Mkk" firstAttribute="top" secondItem="dqG-4i-tIg" secondAttribute="bottom" id="jUy-w1-dTN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="To Do Lists" id="f4Z-Zv-OD5"/>
                     <connections>
-                        <outlet property="tableView" destination="WUE-ka-69R" id="nHB-wb-j2l"/>
+                        <outlet property="tableView" destination="dqG-4i-tIg" id="tpR-jZ-NkT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jk5-6f-Kty" userLabel="First Responder" sceneMemberID="firstResponder"/>

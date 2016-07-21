@@ -8,8 +8,9 @@
 
 #import "TaskListItem.h"
 
+
 @implementation TaskListItem {
-// NSMutableArray* _toDoItems;
+ NSMutableArray* _toDoItems;
 }
 
 -(id)initWithText:(NSString*)textTask {

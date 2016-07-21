@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface TaskListItem : NSObject
 
 //what the task is called.
@@ -16,7 +17,7 @@
 // A Boolean value that determines the completed state of this item.
 @property (nonatomic) BOOL completed;
 
-// Returns an SHCToDoItem item initialized with the given text.
+// Returns an TaskListItem item initialized with the given text.
 -(id)initWithText:(NSString*)textTask;
 
 // makes creation easier
