@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Final/TaskListTableViewDataSource.h">
+   </FileRef>
+   <FileRef
+      location = "group:TaskListCellDelegate.h">
+   </FileRef>
+   <FileRef
       location = "group:WheelCollectionViewCell.h">
    </FileRef>
    <FileRef

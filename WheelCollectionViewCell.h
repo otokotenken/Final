@@ -11,11 +11,7 @@
 @interface WheelCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) UIImageView * imageView;
-
-//@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) NSString * imageName;
-
 @property (nonatomic, strong) UIImageView *backgroundImage;
-
 
 @end
