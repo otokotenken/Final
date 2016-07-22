@@ -9,6 +9,7 @@
 #import "ToDoListViewController.h"
 #import "TaskListItem.h"
 #import "TaskListTableViewCell.h"
+#import "TaskListTableViewPinchToAdd.h"
 //#import "TaskListTableView.h"
 
 @interface ToDoListViewController ()
@@ -22,6 +23,8 @@
     float _editingOffset;
     TaskListTableViewDragAddNew* _dragAddNew;
 }
+TaskListTableViewPinchToAdd* _pinchAddNew;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,9 +38,10 @@
 ////    self.tableView.backgroundColor = [UIColor blackColor];
 //    [self.tableView registerClass:[TaskListTableViewCell class] forCellReuseIdentifier:@"cell"];
     [self makeTaskList];
-    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.backgroundColor = [UIColor whiteColor];
     [self.tableView registerClassForCells:[TaskListTableViewCell class]];
     _dragAddNew = [[TaskListTableViewDragAddNew alloc] initWithTableView:self.tableView];
+    _pinchAddNew = [[TaskListTableViewPinchToAdd alloc] initWithTableView:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,13 +121,13 @@
 
 
 -(void)cellDidBeginEditing:(TaskListTableViewCell *)editingCell {
-//    _editingOffset = _tableView.contentOffset.y - editingCell.frame.origin.y;
+    _editingOffset = _tableView.scrollView.contentOffset.y - editingCell.frame.origin.y;
     for(TaskListTableViewCell* cell in [_tableView visibleCells]) {
         [UIView animateWithDuration:0.3
                          animations:^{
                              cell.frame = CGRectOffset(cell.frame, 0, _editingOffset);
                              if (cell != editingCell) {
-                                 cell.alpha = 0.3;
+                                 cell.alpha = 0.0;
                              }
                          }];
     }
@@ -159,11 +163,17 @@
 }
 
 -(void)itemAdded {
+    [self itemAddedAtIndex:0];
+}
+
+-(void)itemAddedAtIndex:(NSInteger)index {
     // create the new item
     TaskListItem* toDoItem = [[TaskListItem alloc] init];
-    [_toDoItems insertObject:toDoItem atIndex:0];
+    [_toDoItems insertObject:toDoItem atIndex:index];
+    
     // refresh the table
     [_tableView reloadData];
+    
     // enter edit mode
     TaskListTableViewCell* editCell;
     for (TaskListTableViewCell* cell in _tableView.visibleCells) {
