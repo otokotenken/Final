@@ -6,5 +6,7 @@ target 'Final' do
   # use_frameworks!
 
   # Pods for Final
-	pod ‘ARNRouletteWheelView’
+	pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'GoogleSignIn'
 end

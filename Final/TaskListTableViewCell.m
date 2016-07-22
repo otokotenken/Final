@@ -40,7 +40,7 @@ const float UI_CUES_WIDTH = 50.0f;
         _label.delegate = self;
         _label.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         _label.textColor = [UIColor whiteColor];
-        _label.font = [UIFont fontWithName:@"Noteworthy-Bold" size:19.0];
+        _label.font = [UIFont fontWithName:@"Noteworthy-Bold" size:22.0];
         _label.backgroundColor = [UIColor clearColor];
         [self addSubview:_label];
         // remove the default blue highlight for selected cells
@@ -71,7 +71,7 @@ const float UI_CUES_WIDTH = 50.0f;
 -(UILabel*) createCueLabel {
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectNull];
     label.textColor = [UIColor whiteColor];
-    label.font = [UIFont boldSystemFontOfSize:32.0];
+    label.font = [UIFont boldSystemFontOfSize:52.0];
     label.backgroundColor = [UIColor clearColor];
     return label;
 }

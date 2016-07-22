@@ -48,7 +48,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tq0-c2-D0h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="331"/>
+            <point key="canvasLocation" x="534" y="-330"/>
         </scene>
         <!--Wheel View Controller-->
         <scene sceneID="TSd-ws-fbX">
@@ -377,6 +377,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N4W-bl-aFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1439" y="-307"/>
+        </scene>
+        <!--Login View Contoller-->
+        <scene sceneID="32G-rr-K6K">
+            <objects>
+                <viewController storyboardIdentifier="loginVC" id="Fb2-0a-3RD" customClass="LoginViewContoller" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cri-JK-Ru9"/>
+                        <viewControllerLayoutGuide type="bottom" id="hhE-Xg-fdK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S1O-fT-cLF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rac-PS-osi">
+                                <rect key="frame" x="139" y="20" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fn-1x-e4z" customClass="GIDSignInButton">
+                                <rect key="frame" x="40" y="420" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="1fn-1x-e4z" secondAttribute="trailing" constant="20" id="ZHH-P7-Gpi"/>
+                            <constraint firstItem="1fn-1x-e4z" firstAttribute="leading" secondItem="S1O-fT-cLF" secondAttribute="leadingMargin" constant="20" id="brC-hH-0kJ"/>
+                            <constraint firstItem="hhE-Xg-fdK" firstAttribute="top" secondItem="1fn-1x-e4z" secondAttribute="bottom" constant="20" id="ypy-Pu-VpP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="signInButton" destination="1fn-1x-e4z" id="80E-sF-B7W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RSN-NR-37V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="92" y="337"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dG1-SM-api">
