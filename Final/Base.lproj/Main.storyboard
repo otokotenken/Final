@@ -333,20 +333,20 @@
                         <viewControllerLayoutGuide type="top" id="ylm-9T-ANg"/>
                         <viewControllerLayoutGuide type="bottom" id="vbw-xf-Mkk"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jLx-rd-XTb">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="jLx-rd-XTb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqG-4i-tIg" customClass="TaskListTableView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqG-4i-tIg" customClass="TaskListTableView">
+                                <rect key="frame" x="0.0" y="34" width="320" height="534"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="dqG-4i-tIg" firstAttribute="top" secondItem="ylm-9T-ANg" secondAttribute="bottom" constant="-64" id="Aor-gM-lvK"/>
                             <constraint firstItem="dqG-4i-tIg" firstAttribute="leading" secondItem="jLx-rd-XTb" secondAttribute="leadingMargin" constant="-20" id="Px9-g4-kzA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dqG-4i-tIg" secondAttribute="trailing" constant="-20" id="anV-hq-e2L"/>
+                            <constraint firstItem="dqG-4i-tIg" firstAttribute="top" secondItem="ylm-9T-ANg" secondAttribute="bottom" constant="-30" id="dqY-9Z-AyC"/>
                             <constraint firstItem="vbw-xf-Mkk" firstAttribute="top" secondItem="dqG-4i-tIg" secondAttribute="bottom" id="jUy-w1-dTN"/>
                         </constraints>
                     </view>

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TaskListTableViewDataSource.h"
 #import "TaskListTableViewCell.h"
-#define SHC_ROW_HEIGHT 50.0f
+#define SHC_ROW_HEIGHT 70.0f
 
 @interface TaskListTableView : UIView <UIScrollViewDelegate>
 
