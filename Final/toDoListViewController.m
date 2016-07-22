@@ -117,7 +117,7 @@
 
 
 -(void)cellDidBeginEditing:(TaskListTableViewCell *)editingCell {
-//    _editingOffset = _tableView.contentOffset.y - editingCell.frame.origin.y;
+    _editingOffset = _tableView.scrollView.contentOffset.y - editingCell.frame.origin.y;
     for(TaskListTableViewCell* cell in [_tableView visibleCells]) {
         [UIView animateWithDuration:0.3
                          animations:^{

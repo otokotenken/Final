@@ -93,14 +93,14 @@ const float UI_CUES_WIDTH = 50.0f;
 //    self.todoItem.textTask = textField.text;
 //}
 
-//-(void)textFieldDidEndEditing:(UITextField *)textField {
-//    [self.delegate cellDidEndEditing:self];
-//    self.todoItem.textTask = textField.text;
-//}
-//
-//-(void)textFieldDidBeginEditing:(UITextField *)textField {
-//    [self.delegate cellDidBeginEditing:self];
-//}
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    [self.delegate cellDidEndEditing:self];
+    self.todoItem.textTask = textField.text;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    [self.delegate cellDidBeginEditing:self];
+}
 
 const float LABEL_LEFT_MARGIN = 15.0f;
 
