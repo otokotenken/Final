@@ -9,12 +9,14 @@
 #import "WheelViewController.h"
 #import "WheelCollectionViewCell.h"
 #import "WheelCollectionViewLayout.h"
+@import Firebase;
 
 @interface WheelViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
 @property (nonatomic, strong) NSMutableArray *iconsArray;
 @property (nonatomic, strong) NSMutableArray * imageNamesArray;
+@property FIRDatabaseReference *ref;
 
 @end
 
@@ -22,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.ref = [[FIRDatabase database] reference];
     [self initImages];
     
     [self.collectionView registerClass:[WheelCollectionViewCell class] forCellWithReuseIdentifier:@"ItemIdentifier"];

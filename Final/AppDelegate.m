@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewContoller.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) UIViewController *callDismissOnMe;
 
 @end
 
@@ -17,7 +20,38 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    // Use Firebase library to configure APIs
+    [FIRApp configure];
+    
+    [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
+    [GIDSignIn sharedInstance].delegate = self;
+    FIRUser *currentUser = [FIRAuth auth].currentUser;
+    if(currentUser == nil) {
+        [self showLoginScreen:NO];
+    }
+    else {
+        [[GIDSignIn sharedInstance] signInSilently];
+    }
+
     return YES;
+}
+
+-(void) showLoginScreen:(BOOL)animated {
+    
+    // Get login screen from storyboard and present it
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewContoller *viewController = (LoginViewContoller *)[storyboard instantiateViewControllerWithIdentifier:@"loginVC"];
+    _callDismissOnMe = viewController;
+    [self.window makeKeyAndVisible];
+    [self.window.rootViewController presentViewController:viewController
+                                                 animated:animated
+                                               completion:nil];
+}
+
+- (void)dismissLoginView {
+    
+    [_callDismissOnMe dismissViewControllerAnimated:YES completion:nil];
+    //    _callDismissOnMe = nil; // don't need it now, this unretains it
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -42,4 +76,48 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - Google SignIn methods
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *, id> *)options {
+    return [[GIDSignIn sharedInstance] handleURL:url
+                               sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                      annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[GIDSignIn sharedInstance] handleURL:url
+                               sourceApplication:sourceApplication
+                                      annotation:annotation];
+}
+
+- (void)signIn:(GIDSignIn *)signIn
+didSignInForUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+    if (error == nil) {
+        GIDAuthentication *authentication = user.authentication;
+        FIRAuthCredential *credential =
+        [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
+                                         accessToken:authentication.accessToken];
+        [[FIRAuth auth] signInWithCredential:credential
+                                  completion:^(FIRUser *user, NSError *error) {
+                                      // ...
+                                  }];
+//        [self setAuthorizerForSignIn:user];
+        
+        [self dismissLoginView];
+    } else {
+        NSLog(@"%@", error.localizedDescription);
+    }
+}
+
+- (void)signIn:(GIDSignIn *)signIn
+didDisconnectWithUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+    // Perform any operations when the user disconnects from app here.
+    // ...
+}
 @end
