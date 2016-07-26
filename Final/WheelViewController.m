@@ -9,7 +9,11 @@
 #import "WheelViewController.h"
 #import "WheelCollectionViewCell.h"
 #import "WheelCollectionViewLayout.h"
+@import FirebaseDatabase;
+#import "ChatViewController.h"
 @import Firebase;
+
+#import <GoogleSignIn/GoogleSignIn.h>
 
 @interface WheelViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 
@@ -17,6 +21,7 @@
 @property (nonatomic, strong) NSMutableArray *iconsArray;
 @property (nonatomic, strong) NSMutableArray * imageNamesArray;
 @property FIRDatabaseReference *ref;
+@property (nonatomic, strong)    FIRUser *userObj;
 
 @end
 
@@ -32,7 +37,12 @@
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
+    _userObj = [FIRAuth auth].currentUser;
+    if (_userObj != nil) {
+        
+    } else {
+        // No user is signed in.
+    }
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     return CGSizeMake(0., 30.);
@@ -76,6 +86,15 @@
     }
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if( [segue.identifier isEqualToString:@"chatSegue"]){
+//        UINavigationController * navVc = [segue destinationViewController] ;
+        ChatViewController * chatVc = [segue destinationViewController] ;
+        chatVc.senderId = _userObj.displayName;
+        NSLog(@"%@", _userObj.displayName);
+        chatVc.senderDisplayName = @"";
+    }
+}
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     NSLog(@"scrollViewDidEndDecelerating...");
     [self printCurrentCard];

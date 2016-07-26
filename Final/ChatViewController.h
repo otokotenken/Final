@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <JSQMessagesViewController/JSQMessagesViewController.h>
 
-@interface ChatViewController : UIViewController
+@interface ChatViewController : JSQMessagesViewController
+
+//@property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 
 @end
