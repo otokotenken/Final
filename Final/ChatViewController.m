@@ -31,6 +31,7 @@
 @property (nonatomic, strong) JSQMessagesBubbleImage * incomingBubbleImageView;
 @property (nonatomic) Boolean isTyping;
 @property (weak, nonatomic) IBOutlet JSQMessagesLabel *messageBubbleTopLabel;
+@property (strong, nonatomic) NSString *dateString;
 @end
 
 @implementation ChatViewController
@@ -98,6 +99,7 @@
         
         NSString *name = message[@"senderId"];
         NSString *text = message[@"text"];
+        _dateString = message[@"date"];
         
         [self addMessagewithId:name andText:text];
         
@@ -144,15 +146,8 @@
 #pragma mark - button actions
 
 -(void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)senderDisplayName date:(NSString *)date {
-    NSDate *myDate = [[NSDate alloc] init];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYYMMdddd HH:mm:ss"];  //20160217 13:14:22
-    NSString *dateString = [dateFormatter stringFromDate: myDate];
-//    
-//    [date setValue:dateString];
-    
-    NSDictionary *mdata = @{@"text": text, @"senderId":senderId,  @"date":dateString};
+    NSDictionary *mdata = @{@"text": text, @"senderId":senderId,  @"date":_dateString};
     
     // Push data to Firebase Database
     [[[_rootRef child:@"messages"] childByAutoId] setValue:mdata];
@@ -212,16 +207,12 @@
 }
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
-                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath {
     return 18.0f;
 }
 
-- (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath
-{
+- (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath {
     JSQMessage *message = [self.messages objectAtIndex:indexPath.item];
-    
     /**
      *  iOS7-style sender name labels
      */
@@ -242,19 +233,24 @@
     return [[NSAttributedString alloc] initWithString:message.senderId];
 }
 
-- (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
-{
+- (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath {
+        JSQMessage *message = [self.messages objectAtIndex:indexPath.item];
     /**
      *  This logic should be consistent with what you return from `heightForCellTopLabelAtIndexPath:`
      *  The other label text delegate methods should follow a similar pattern.
      *
      *  Show a timestamp for every 3rd message
      */
-    if (indexPath.item % 3 == 0) {
-        JSQMessage *message = [self.messages objectAtIndex:indexPath.item];
-//        [[NSAttributedString alloc] initWithString:message.dateString];
+    if (indexPath.item == _messages.count -1) {
         
-        return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
+//        NSDate *myDate = [[NSDate alloc] init];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MMdd HH:mm:ss"];  //20160217 13:14:22
+        _dateString = [dateFormatter stringFromDate: message.date];
+//        [[NSAttributedString alloc] initWithString:message.dateString];
+//        return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
+        return [[NSAttributedString alloc]initWithString:_dateString];
     }
     return nil;
 }
@@ -276,7 +272,7 @@
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
     }
     
-    return 10.0f;
+    return 0.0f;
 }
 
 
