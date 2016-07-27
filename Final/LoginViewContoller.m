@@ -7,19 +7,21 @@
 //
 
 #import "LoginViewContoller.h"
-@import Firebase;
+@import FirebaseDatabase;
+
+@interface LoginViewContoller ()
+@property FIRDatabaseReference *ref;
+@end
+//FIRDatabaseReference *ref;
 
 @implementation LoginViewContoller
 
-FIRDatabaseReference *ref;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.ref = [[FIRDatabase database] reference];
     // TODO(developer) Configure the sign-in button look/feel
     
     [GIDSignIn sharedInstance].uiDelegate = self;
-        ref = [[FIRDatabase database] reference];
     // Uncomment to automatically sign in the user.
     //[[GIDSignIn sharedInstance] signInSilently];
     

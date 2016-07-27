@@ -138,7 +138,7 @@
                                         <size key="customSize" width="100" height="100"/>
                                         <connections>
                                             <outlet property="imageView" destination="5DN-4f-KtY" id="h2y-sO-jGb"/>
-                                            <segue destination="0Hy-AA-j6t" kind="push" identifier="chatSegue" id="jnt-s8-Rtv"/>
+                                            <segue destination="0Hy-AA-j6t" kind="push" identifier="chatSegue" id="XnB-Sc-AXU"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="center" reuseIdentifier="toDo" id="s8r-XC-RQK" customClass="WheelCollectionViewCell">
@@ -323,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rcu-Re-gaT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1852" y="-141"/>
+            <point key="canvasLocation" x="1817" y="-168"/>
         </scene>
         <!--To Do Lists-->
         <scene sceneID="fiP-ds-DaD">
@@ -358,25 +358,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jk5-6f-Kty" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1657" y="505"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="mce-RE-jMi">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IvC-N3-gWu" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="P76-YO-T6y"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vo5-TG-Rzp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="0Hy-AA-j6t" kind="relationship" relationship="rootViewController" id="BRs-Fg-TAf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N4W-bl-aFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1439" y="-307"/>
         </scene>
         <!--Login View Contoller-->
         <scene sceneID="32G-rr-K6K">
@@ -434,8 +415,27 @@
             </objects>
             <point key="canvasLocation" x="534" y="337"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Kai-su-eE9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xzi-LG-b5O" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="P8o-JC-2vF"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DXP-Xa-Dbs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0Hy-AA-j6t" kind="relationship" relationship="rootViewController" id="Jnl-ho-3xh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nQK-Df-q3Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1464" y="-168"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jnt-s8-Rtv"/>
+        <segue reference="XnB-Sc-AXU"/>
     </inferredMetricsTieBreakers>
 </document>
