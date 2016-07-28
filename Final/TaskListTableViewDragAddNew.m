@@ -22,7 +22,7 @@
     self = [super init];
     if (self) {
         _placeholderCell = [[TaskListTableViewCell alloc] init];
-        _placeholderCell.backgroundColor = [UIColor redColor];
+        _placeholderCell.backgroundColor = [UIColor orangeColor];
         _tableView = tableView;
         _tableView.delegate = self;
     }

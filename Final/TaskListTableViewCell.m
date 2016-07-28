@@ -8,6 +8,7 @@
 
 #import "TaskListTableViewCell.h"
 #import "TaskListStrikethroughLabel.h"
+#import "FirebaseDatabase/FirebaseDatabase.h"
 
 @implementation TaskListTableViewCell {
     CAGradientLayer* _gradientLayer;
@@ -18,6 +19,7 @@
     CALayer *_itemCompleteLayer;
     UILabel *_tickLabel;
     UILabel *_crossLabel;
+    FIRDatabaseReference *rootRef;
 }
 
 const float UI_CUES_MARGIN = 10.0f;
@@ -63,6 +65,7 @@ const float UI_CUES_WIDTH = 50.0f;
         UIGestureRecognizer* recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
         recognizer.delegate = self;
         [self addGestureRecognizer:recognizer];
+        rootRef= [[FIRDatabase database] reference];
     }
     return self;
 }
@@ -88,14 +91,13 @@ const float UI_CUES_WIDTH = 50.0f;
     return !self.todoItem.completed;
 }
 
-//-(void)textFieldDidEndEditing:(UITextField *)textField {
-//    // set the model object state when an edit has complete
-//    self.todoItem.textTask = textField.text;
-//}
-
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     [self.delegate cellDidEndEditing:self];
     self.todoItem.textTask = textField.text;
+    NSDictionary *mdata = @{@"text": textField.text};
+    
+    // Push data to Firebase Database
+    [[[rootRef child:@"toDo"] childByAutoId] setValue:mdata];
     
 }
 

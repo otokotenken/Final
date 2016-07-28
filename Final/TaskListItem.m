@@ -24,4 +24,8 @@
     return [[TaskListItem alloc] initWithText:textTask];
 }
 
+-(id)toDoItemWithText:(NSString *)textTask {
+    return [[TaskListItem alloc]initWithText:textTask];
+}
+
 @end

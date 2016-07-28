@@ -11,8 +11,10 @@
 #import "TaskListTableViewCell.h"
 #import "TaskListTableViewPinchToAdd.h"
 //#import "TaskListTableView.h"
+#import "FirebaseDatabase/FirebaseDatabase.h"
 
 @interface ToDoListViewController ()
+@property (nonatomic, strong) FIRDatabaseReference *rootRef;
 
 @end
 
@@ -22,6 +24,7 @@
     // the offset applied to cells when entering “edit mode”
     float _editingOffset;
     TaskListTableViewDragAddNew* _dragAddNew;
+    FIRDatabaseHandle _taskHandle;
 }
 TaskListTableViewPinchToAdd* _pinchAddNew;
 
@@ -38,10 +41,12 @@ TaskListTableViewPinchToAdd* _pinchAddNew;
 ////    self.tableView.backgroundColor = [UIColor blackColor];
 //    [self.tableView registerClass:[TaskListTableViewCell class] forCellReuseIdentifier:@"cell"];
     [self makeTaskList];
-    _tableView.backgroundColor = [UIColor whiteColor];
+    _tableView.backgroundColor = [UIColor blackColor];
     [self.tableView registerClassForCells:[TaskListTableViewCell class]];
     _dragAddNew = [[TaskListTableViewDragAddNew alloc] initWithTableView:self.tableView];
     _pinchAddNew = [[TaskListTableViewPinchToAdd alloc] initWithTableView:self.tableView];
+    _rootRef= [[FIRDatabase database] reference];
+    [self observeMessages];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,21 +56,7 @@ TaskListTableViewPinchToAdd* _pinchAddNew;
 
 -(id)makeTaskList {
     _toDoItems = [[NSMutableArray alloc] init];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Feed the cat"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Buy eggs"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Pack bags for WWDC"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Rule the web"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Buy a new iPhone"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Find missing socks"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Write a new tutorial"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Master Objective-C"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Remember your wedding anniversary!"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Drink less beer"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Learn to draw"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Take the car to the garage"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Sell things on eBay"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Learn to juggle"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Give up"]];
+    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"The Beginning"]];
     return self;
 }
 
@@ -97,7 +88,7 @@ TaskListTableViewPinchToAdd* _pinchAddNew;
     // iterate over all of the cells
     for(TaskListTableViewCell* cell in visibleCells) {
         if (startAnimating) {
-            [UIView animateWithDuration:0.5
+            [UIView animateWithDuration:0.8
                                   delay:delay
                                 options:UIViewAnimationOptionCurveEaseInOut
                              animations:^{
@@ -170,10 +161,10 @@ TaskListTableViewPinchToAdd* _pinchAddNew;
     // create the new item
     TaskListItem* toDoItem = [[TaskListItem alloc] init];
     [_toDoItems insertObject:toDoItem atIndex:index];
-    
+//    [self observeMessages];
+
     // refresh the table
     [_tableView reloadData];
-    
     // enter edit mode
     TaskListTableViewCell* editCell;
     for (TaskListTableViewCell* cell in _tableView.visibleCells) {
@@ -182,7 +173,41 @@ TaskListTableViewPinchToAdd* _pinchAddNew;
             break;
         }
     }
+//    NSDictionary *mdata = @{@"text": editCell.label.text};
+//    
+//    // Push data to Firebase Database
+//    [[[_rootRef child:@"toDo"] childByAutoId] setValue:mdata];
     [editCell.label becomeFirstResponder];
+}
+
+-(void)addTaskWithTest:(NSString *)task {
+    TaskListItem *taskItem = [TaskListItem toDoItemWithText:task];
+    
+    [_toDoItems addObject:taskItem];
+
+}
+
+-(void)observeMessages {
+    _taskHandle = [[_rootRef child:@"toDo"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+        
+        NSDictionary<NSString *, NSString *> *task = snapshot.value;
+        
+        NSString *text = task[@"text"];
+        
+        [self addTaskWithTest:text];
+        
+        // animates the receiving of a new message on the view
+//        [self finishReceivingMessage];
+    }];
+    
+}
+
+-(void)newItemAddedPush:(NSString *)text {
+    NSDictionary *mdata = @{@"text": text};
+    
+    // Push data to Firebase Database
+    [[[_rootRef child:@"messages"] childByAutoId] setValue:mdata];
+
 }
 
 /*

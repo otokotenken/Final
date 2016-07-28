@@ -78,7 +78,7 @@ BOOL _pinchExceededRequiredDistance;
         if ([self viewContainsPoint:cell withPoint:_initialTouchPoints.lower]) {
             _pointTwoCellindex = i;
             // highlight the cell – just for debugging!
-            cell.backgroundColor = [UIColor purpleColor];
+//            cell.backgroundColor = [UIColor purpleColor];
         }
     }
     

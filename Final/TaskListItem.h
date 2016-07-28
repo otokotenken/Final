@@ -23,4 +23,6 @@
 // makes creation easier
 +(id)toDoItemWithText:(NSString*)textTask;
 
+-(id)toDoItemWithText:(NSString *)textTask;
+
 @end
