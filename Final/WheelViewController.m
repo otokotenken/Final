@@ -45,7 +45,7 @@
     }
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return CGSizeMake(0., 30.);
+    return CGSizeMake(0., 5.);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -63,7 +63,6 @@
     WheelCollectionViewCell *cell = (WheelCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"ItemIdentifier" forIndexPath:indexPath];
     cell.imageView = self.iconsArray[indexPath.item];
     cell.imageName = self.imageNamesArray[indexPath.item];
-    cell.layer.borderWidth = 5.0f;
     return cell;
 }
 //- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
@@ -78,7 +77,7 @@
     UIImageView * selectedImageView = self.iconsArray[indexPath.item];
     NSLog(@"selected image: %@", selectedImageView);
     if (indexPath.row == 0){
-        NSLog(@"print calender");
+        [self performSegueWithIdentifier:@"calenderSegue" sender:self];
     } else if (indexPath.row == 1) {
         [self performSegueWithIdentifier:@"chatSegue" sender:self];
     } else if (indexPath.row == 2) {
@@ -118,12 +117,12 @@
     self.iconsArray = [NSMutableArray array];
     self.imageNamesArray = [NSMutableArray array];
     
-    UIImageView * image1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"calender2Icon.png"]];
-    UIImageView * image2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chatIconImage.png"]];
-    UIImageView * image3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"todoListIcon.png"]];
-    UIImageView * image4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"calender2Icon.jpeg"]];
-    UIImageView * image5 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chatIconImage.jpeg"]];
-    UIImageView * image6 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"todoListIcon.jpeg"]];
+    UIImageView * image1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bordercalender.jpg"]];
+    UIImageView * image2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"borderchat.jpg"]];
+    UIImageView * image3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bordertodo.jpg"]];
+//    UIImageView * image4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"calender2Icon.jpeg"]];
+//    UIImageView * image5 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chatIconImage.jpeg"]];
+//    UIImageView * image6 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"todoListIcon.jpeg"]];
     
     [self.iconsArray addObject:image1];
     self.imageNamesArray[0] = @"calender";
@@ -131,12 +130,12 @@
     self.imageNamesArray[1] = @"chat";
     [self.iconsArray addObject:image3];
     self.imageNamesArray[2] = @"toDo";
-    [self.iconsArray addObject:image4];
-    self.imageNamesArray[3] = @"5";
-    [self.iconsArray addObject:image5];
-    self.imageNamesArray[4] = @"6";
-    [self.iconsArray addObject:image6];
-    self.imageNamesArray[5] = @"7";
+//    [self.iconsArray addObject:image4];
+//    self.imageNamesArray[3] = @"5";
+//    [self.iconsArray addObject:image5];
+//    self.imageNamesArray[4] = @"6";
+//    [self.iconsArray addObject:image6];
+//    self.imageNamesArray[5] = @"7";
 }
 
 @end

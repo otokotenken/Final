@@ -9,15 +9,15 @@
 #import "WheelCollectionViewLayout.h"
 #import "WheelCollectionViewCell.h"
 
-#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+#define DEGREES_TO_RADIANS(angle) ((angle) / 250.0 * M_PI)
 
 @implementation WheelCollectionViewLayout
 
 -(id)init {
     if (!(self = [super init])) return nil;
     
-    self.itemSize = CGSizeMake(100.0f, 100.0f);
-    self.sectionInset = UIEdgeInsetsMake(0, 60.0, 0, 60.0);
+    self.itemSize = CGSizeMake(150.0f, 150.0f);
+    self.sectionInset = UIEdgeInsetsMake(0, 15.0, 0, 5.0);
     self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     return self;
 }
@@ -25,8 +25,8 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.itemSize = CGSizeMake(100.0f, 100.0f);
-        self.sectionInset = UIEdgeInsetsMake(0, 60.0, 0, 60.0);
+        self.itemSize = CGSizeMake(150.0f, 150.0f);
+        self.sectionInset = UIEdgeInsetsMake(0, 15.0, 0, 5.0);
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     }
     return self;
@@ -77,7 +77,7 @@
         
         // we find out where this cell is relative to the center of the viewport, and invoke private methods to deduce the
         // amount of rotation to apply
-        if (pointInMainView.x < self.collectionView.frame.size.width+80.0f){
+        if (pointInMainView.x < self.collectionView.frame.size.width+30.0f){
             translateBy = [self calculateTranslateBy:horizontalCenter attribs:layoutAttributes];
             rotateBy = [self calculateRotationFromViewPortDistance:pointInMainView.x center:horizontalCenter];
             
