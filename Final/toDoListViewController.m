@@ -11,9 +11,10 @@
 #import "TaskListTableViewCell.h"
 #import "TaskListTableViewPinchToAdd.h"
 //#import "TaskListTableView.h"
+#import "FirebaseDatabase/FirebaseDatabase.h"
 
 @interface ToDoListViewController ()
-
+@property (nonatomic, strong) FIRDatabaseReference *rootRef;
 @end
 
 @implementation ToDoListViewController {
@@ -22,26 +23,23 @@
     // the offset applied to cells when entering “edit mode”
     float _editingOffset;
     TaskListTableViewDragAddNew* _dragAddNew;
+    FIRDatabaseHandle _taskHandle;
 }
-TaskListTableViewPinchToAdd* _pinchAddNew;
 
+TaskListTableViewPinchToAdd* _pinchAddNew;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor blackColor];
-//    _tableView.dataSource = self;
-//    self.tableView.delegate = self;
-//    
-////    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-////    self.tableView.backgroundColor = [UIColor blackColor];
-//    [self.tableView registerClass:[TaskListTableViewCell class] forCellReuseIdentifier:@"cell"];
     [self makeTaskList];
     _tableView.backgroundColor = [UIColor whiteColor];
     [self.tableView registerClassForCells:[TaskListTableViewCell class]];
     _dragAddNew = [[TaskListTableViewDragAddNew alloc] initWithTableView:self.tableView];
     _pinchAddNew = [[TaskListTableViewPinchToAdd alloc] initWithTableView:self.tableView];
+    _rootRef= [[FIRDatabase database] reference];
+//    [self observeMessages];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,23 +47,27 @@ TaskListTableViewPinchToAdd* _pinchAddNew;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self observeMessages];
+
+}
+
 -(id)makeTaskList {
     _toDoItems = [[NSMutableArray alloc] init];
     [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Feed the cat"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Buy eggs"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Pack bags for WWDC"]];
     [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Rule the web"]];
     [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Buy a new iPhone"]];
     [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Find missing socks"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Write a new tutorial"]];
     [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Master Objective-C"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Remember your wedding anniversary!"]];
     [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Drink less beer"]];
     [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Learn to draw"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Take the car to the garage"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Sell things on eBay"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Learn to juggle"]];
-    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Give up"]];
+    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Pack sunblock"]];
+    [_toDoItems addObject:[TaskListItem toDoItemWithText:@"Bike to Wurst"]];
     return self;
 }
 
@@ -82,6 +84,7 @@ TaskListTableViewPinchToAdd* _pinchAddNew;
     cell.backgroundColor = [self colorForIndex:row];
     return cell;
 }
+
 -(void)toDoItemDeleted:(id)todoItem {
     float delay = 0.0;
     
@@ -97,7 +100,7 @@ TaskListTableViewPinchToAdd* _pinchAddNew;
     // iterate over all of the cells
     for(TaskListTableViewCell* cell in visibleCells) {
         if (startAnimating) {
-            [UIView animateWithDuration:0.5
+            [UIView animateWithDuration:0.8
                                   delay:delay
                                 options:UIViewAnimationOptionCurveEaseInOut
                              animations:^{
@@ -110,7 +113,6 @@ TaskListTableViewPinchToAdd* _pinchAddNew;
                              }];
             delay+=0.03;
         }
-        
         // if you have reached the item that was deleted, start animating
         if (cell.todoItem == todoItem) {
             startAnimating = true;
@@ -170,10 +172,9 @@ TaskListTableViewPinchToAdd* _pinchAddNew;
     // create the new item
     TaskListItem* toDoItem = [[TaskListItem alloc] init];
     [_toDoItems insertObject:toDoItem atIndex:index];
-    
+
     // refresh the table
     [_tableView reloadData];
-    
     // enter edit mode
     TaskListTableViewCell* editCell;
     for (TaskListTableViewCell* cell in _tableView.visibleCells) {
@@ -184,6 +185,30 @@ TaskListTableViewPinchToAdd* _pinchAddNew;
     }
     [editCell.label becomeFirstResponder];
 }
+
+-(void)addTaskWithTest:(NSString *)task {
+    TaskListItem *taskItem = [TaskListItem toDoItemWithText:task];
+    
+    [_toDoItems addObject:taskItem];
+}
+
+-(void)observeMessages {
+    _taskHandle = [[_rootRef child:@"toDo"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+        
+        NSDictionary<NSString *, NSString *> *task = snapshot.value;
+        
+        NSString *text = task[@"text"];
+        
+        [self addTaskWithTest:text];
+    }];
+}
+
+//-(void)newItemAddedPush:(NSString *)text {
+//    NSDictionary *mdata = @{@"text": text};
+//    
+//    // Push data to Firebase Database
+//    [[[_rootRef child:@"messages"] childByAutoId] setValue:mdata];
+//}
 
 /*
 #pragma mark - Navigation

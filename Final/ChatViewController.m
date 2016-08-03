@@ -134,7 +134,6 @@
 }
 
 -(void)sendIsTyping {
-    
     // Push data to Firebase Database
     if(_isTyping) {
         [_isTypingRef setValue:@"1"];
@@ -151,7 +150,7 @@
     
     // Push data to Firebase Database
     [[[_rootRef child:@"messages"] childByAutoId] setValue:mdata];
-    
+    NSLog(@"DATE IS %@", date.description);
     _isTyping =false;
     [self sendIsTyping];
     [self finishSendingMessage];
@@ -226,7 +225,6 @@
             return nil;
         }
     }
-    
     /**
      *  Don't specify attributes to use the defaults.
      */
@@ -242,11 +240,10 @@
      *  Show a timestamp for every 3rd message
      */
     if (indexPath.item == _messages.count -1) {
-        
 //        NSDate *myDate = [[NSDate alloc] init];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"MMdd HH:mm:ss"];  //20160217 13:14:22
+        [dateFormatter setDateFormat:@"MMdd HH:mm"];  //0217 13:14
         _dateString = [dateFormatter stringFromDate: message.date];
 //        [[NSAttributedString alloc] initWithString:message.dateString];
 //        return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
@@ -256,8 +253,7 @@
 }
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
-                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
-{
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath {
     /**
      *  Each label in a cell has a `height` delegate method that corresponds to its text dataSource method
      */
@@ -265,13 +261,10 @@
     /**
      *  This logic should be consistent with what you return from `attributedTextForCellTopLabelAtIndexPath:`
      *  The other label height delegate methods should follow similarly
-     *
-     *  Show a timestamp for every 3rd message
      */
-    if (indexPath.item % 3 == 0) {
+    if (indexPath.item == _messages.count -1) {
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
     }
-    
     return 0.0f;
 }
 
